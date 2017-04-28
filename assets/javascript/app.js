@@ -9,16 +9,21 @@
   };
   firebase.initializeApp(config);
   
-var provider = new firebase.auth.TwitterAuthProvider();
 
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-  // You can use these server side with your app's credentials to access the Twitter API.
-  var token = result.credential.accessToken;
-  var secret = result.credential.secret;
+
+//firebase twitter auth///
+var provider = new firebase.auth.TwitterAuthProvider();
+firebase.auth().signInWithRedirect(provider);
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+    // You can use these server side with your app's credentials to access the Twitter API.
+    var token = result.credential.accessToken;
+    var secret = result.credential.secret;
+    // ...
+  }
   // The signed-in user info.
   var user = result.user;
-  // ...
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -30,12 +35,11 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // ...
 });
 
+
 //variable to reference database
 var database = firebase.database();
-
 //database values
 var team = "";
-
 //store user input in database
 $("#search").on("click", function() {
   team = $(".search-term:selected").val();
@@ -51,16 +55,10 @@ $("#search").on("click", function() {
 
 var todayDate = moment().format("YYYY" + "MM" + "DD");
 console.log(todayDate);
-
-
 //////////////////////////////////
 //ajax to get sports api data/////
 //////////////////////////////////
-
-
-
 var queryUrl = "https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=" + todayDate;
-
 $.ajax({
   method: "GET",
   url: queryUrl,
@@ -105,21 +103,11 @@ $.ajax({
   $("#home-team-name2").html(homeTeamName2);
   $("#home-team-score2").html(homeTeamScore2);
 
-//refresh json data
-  var previous = null;
-    var current = null;
-    setInterval(function() {
-        $.getJSON(SportsData, function(json) 
-          {
-            current = JSON.stringify(json);            
-            if (previous && current && previous !== current) {
-                console.log('refresh');
-                location.reload();
-            }
-            previous = current;
-        });                       
-    }, 100);
-
+  var timeout = setTimeout("location.reload(true);",60000);
+  function resetTimeout() {
+    clearTimeout(timeout);
+    timeout = setTimeout("location.reload(true);",60000);
+  }
 
 
 });
@@ -130,7 +118,6 @@ $.ajax({
 ////////////////////////////////////////////
 
 var searchData = "";
-
 
 function wikipediaBox(search) {
  var RRsearchKey = search;
@@ -192,17 +179,11 @@ $("#search").on("click", function(event) {
     console.log(searchData);
     displayGifs();
     wikipediaBox(searchData);
+    showTweets();
 })
-
-
-
 ////////////////////////////////////////
 ///////////////TWITTER//////////////////
 ////////////////////////////////////////
-//$("#twitter").html("<a class='twitter-timeline'  href='https://twitter.com/search?q=" + searchData + " data-widget-id='857764958561595392'>")
-
-//function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-  //if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 function showTweets() {
   var searchData = $(".search-term:selected").val();
@@ -213,9 +194,6 @@ function showTweets() {
       dataType: "json",
     }).done(function(tweets) {
       console.log(tweets);
-      /*for (var i = 0; i < response.data.length; i++) {
-        var gifs = response.data[i].images.downsized.url;
-      }
-      $("#gifs").append("<img src='" + gifs + " '>");*/
+
     });
 };
