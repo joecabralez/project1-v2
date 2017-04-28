@@ -9,33 +9,6 @@
   };
   firebase.initializeApp(config);
   
-
-
-//firebase twitter auth///
-var provider = new firebase.auth.TwitterAuthProvider();
-firebase.auth().signInWithRedirect(provider);
-firebase.auth().getRedirectResult().then(function(result) {
-  if (result.credential) {
-    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-    // You can use these server side with your app's credentials to access the Twitter API.
-    var token = result.credential.accessToken;
-    var secret = result.credential.secret;
-    // ...
-  }
-  // The signed-in user info.
-  var user = result.user;
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-
-
 //variable to reference database
 var database = firebase.database();
 //database values
@@ -86,7 +59,23 @@ $.ajax({
   var homeTeamCity2 = SportsData.scoreboard.gameScore[1].game.homeTeam.City
   var homeTeamName2 = SportsData.scoreboard.gameScore[1].game.homeTeam.Name
   var homeTeamScore2 = SportsData.scoreboard.gameScore[1].homeScore
- 
+
+  if(!homeTeamScore1){
+    homeTeamScore1 = 0;
+  }
+
+  if(!homeTeamScore2){
+    homeTeamScore2 = 0;
+  }
+
+  if(!awayTeamScore1){
+    awayTeamScore1 = 0;
+  }
+
+  if(!awayTeamScore2){
+    awayTeamScore2 = 0;
+  }
+
   $("#away-team-city1").html(awayTeamCity1);
   $("#away-team-name1").html(awayTeamName1);
   $("#away-team-score1").html(awayTeamScore1);
@@ -108,6 +97,7 @@ $.ajax({
     clearTimeout(timeout);
     timeout = setTimeout("location.reload(true);",60000);
   }
+
 
 
 });
@@ -179,13 +169,14 @@ $("#search").on("click", function(event) {
     console.log(searchData);
     displayGifs();
     wikipediaBox(searchData);
-    showTweets();
 })
 ////////////////////////////////////////
 ///////////////TWITTER//////////////////
 ////////////////////////////////////////
 
-function showTweets() {
+
+
+/*function showTweets() {
   var searchData = $(".search-term:selected").val();
   var tweetQueryURL = "https://api.twitter.com/1.1/search/tweets.json?q=" + searchData + "&result_type=recent"
   $.ajax({
@@ -196,4 +187,4 @@ function showTweets() {
       console.log(tweets);
 
     });
-};
+}; */
