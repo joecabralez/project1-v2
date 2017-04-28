@@ -15,8 +15,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 //database values
-var league = "";
-var city = "";
 var team = "";
 
 //store user input in database
@@ -62,7 +60,7 @@ $.ajax({
   
   var homeTeamCity1 = SportsData.scoreboard.gameScore[0].game.homeTeam.City
   var homeTeamName1 = SportsData.scoreboard.gameScore[0].game.homeTeam.Name
-  var homeTeamScore1 = SportsData.scoreboard.gameScore[0].awayScore
+  var homeTeamScore1 = SportsData.scoreboard.gameScore[0].homeScore
 
   var awayTeamCity2 = SportsData.scoreboard.gameScore[1].game.awayTeam.City
   var awayTeamName2 = SportsData.scoreboard.gameScore[1].game.awayTeam.Name
@@ -70,7 +68,7 @@ $.ajax({
   
   var homeTeamCity2 = SportsData.scoreboard.gameScore[1].game.homeTeam.City
   var homeTeamName2 = SportsData.scoreboard.gameScore[1].game.homeTeam.Name
-  var homeTeamScore2 = SportsData.scoreboard.gameScore[1].awayScore
+  var homeTeamScore2 = SportsData.scoreboard.gameScore[1].homeScore
  
   $("#away-team-city1").html(awayTeamCity1);
   $("#away-team-name1").html(awayTeamName1);
@@ -87,14 +85,12 @@ $.ajax({
   $("#home-team-city2").html(homeTeamCity2);
   $("#home-team-name2").html(homeTeamName2);
   $("#home-team-score2").html(homeTeamScore2);
-  
-  
 
 //refresh json data
   var previous = null;
     var current = null;
     setInterval(function() {
-        $.getJSON("'https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=' + todayDate", function(json) 
+        $.getJSON(SportsData, function(json) 
           {
             current = JSON.stringify(json);            
             if (previous && current && previous !== current) {
@@ -103,7 +99,7 @@ $.ajax({
             }
             previous = current;
         });                       
-    }, 1000);
+    }, 100);
 
 
 
@@ -119,7 +115,7 @@ var searchData = "";
 
 function wikipediaBox(search) {
  var RRsearchKey = search;
- var RRqueryURL = "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+RRsearchKey+"&callback=?";
+ var RRqueryURL = "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+RRsearchKey+"&callback=?";
     $.ajax({
         type: "GET",
         url: RRqueryURL,
@@ -152,7 +148,7 @@ function wikipediaBox(search) {
 function displayGifs() {
     
     //the URL to search the site and grab 10 results
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=10";
 
     //ajax function that gets a response from the site
     $.ajax({
@@ -183,3 +179,28 @@ $("#search").on("click", function(event) {
 ////////////////////////////////////////
 ///////////////TWITTER//////////////////
 ////////////////////////////////////////
+//$("#twitter").html("<a class='twitter-timeline'  href='https://twitter.com/search?q=" + searchData + " data-widget-id='857764958561595392'>")
+
+//function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+  //if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+/*function showTweets() {
+  var searchData = $(".search-term:selected").val();
+  var tweetQueryURL = "https://api.twitter.com/1.1/search/tweets.json?q=" + searchData + "&result_type=recent"
+  
+  $.ajax({
+      url: tweetQueryURL,
+      Authorization: "OAuth oauth_consumer_key=&quot;DC0sePOBbQ8bYdC8r4Smg&quot;,oauth_signature_method=&quot;HMAC-SHA1&quot;,oauth_timestamp=&quot;1493341097&quot;,oauth_nonce=&quot;-250157939&quot;,oauth_version=&quot;1.0&quot;,oauth_token=&quot;38498108-U2qPfMMghPMOpuWPKrx0NDYt4mZ7FlC37h1RDpF1m&quot;,oauth_signature=&quot;w%2BChAZXCxncviJbp%2FEcLl6LVUFI%3D&quot;",
+      Host: "api.twitter.com",
+      XTargetURI: "https://api.twitter.com",
+      Connection: "Keep-Alive",
+      method:"GET",
+      dataType: "json",
+    }).done(function(tweets) {
+      console.log(tweets);
+      /*for (var i = 0; i < response.data.length; i++) {
+        var gifs = response.data[i].images.downsized.url;
+      }
+      $("#gifs").append("<img src='" + gifs + " '>");*/
+    //});
+//};
