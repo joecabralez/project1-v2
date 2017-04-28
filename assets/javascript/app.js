@@ -61,6 +61,8 @@ $.ajax({
   var homeTeamName2 = SportsData.scoreboard.gameScore[1].game.homeTeam.Name
   var homeTeamScore2 = SportsData.scoreboard.gameScore[1].homeScore
 
+  var gamedate = SportsData.scoreboard.gameScore[0].game.awayTeam.date
+
   if(!homeTeamScore1){
     homeTeamScore1 = 0;
   }
@@ -93,18 +95,20 @@ $.ajax({
   $("#home-team-name2").html(homeTeamName2);
   $("#home-team-score2").html(homeTeamScore2);
 
+  
+
 console.log("hello world");
 
 
 
 });
-};
+}
 
 sportsData();
 
-var timeout = setTimeout(sportsData(),6000);
+setInterval(function(){sportsData()}, 45000);
 
-clearTimeout(timeout);
+
 ////////////////////////////////////////////
 /////WIKIPEDIA FUNCTION WITH AJAX CALL//////
 ////////////////////////////////////////////
