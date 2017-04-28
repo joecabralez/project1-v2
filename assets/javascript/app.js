@@ -1,15 +1,34 @@
-///////////////////////////
-// Initialize Firebase/////
-///////////////////////////
-var config = {
-  apiKey: "AIzaSyBVdl2rA2nKOz4OSGuftySdI4B9mvAfPQ4",
-  authDomain: "second-screen-sports.firebaseapp.com",
-  databaseURL: "https://second-screen-sports.firebaseio.com",
-  projectId: "second-screen-sports",
-  storageBucket: "second-screen-sports.appspot.com",
-  messagingSenderId: "910265912496"
-};
-firebase.initializeApp(config);
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBVdl2rA2nKOz4OSGuftySdI4B9mvAfPQ4",
+    authDomain: "second-screen-sports.firebaseapp.com",
+    databaseURL: "https://second-screen-sports.firebaseio.com",
+    projectId: "second-screen-sports",
+    storageBucket: "second-screen-sports.appspot.com",
+    messagingSenderId: "910265912496"
+  };
+  firebase.initializeApp(config);
+  
+var provider = new firebase.auth.TwitterAuthProvider();
+
+firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+  // You can use these server side with your app's credentials to access the Twitter API.
+  var token = result.credential.accessToken;
+  var secret = result.credential.secret;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
 
 //variable to reference database
 var database = firebase.database();
@@ -148,7 +167,7 @@ function wikipediaBox(search) {
 function displayGifs() {
     
     //the URL to search the site and grab 10 results
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=5"; 
 
     //ajax function that gets a response from the site
     $.ajax({
@@ -158,8 +177,9 @@ function displayGifs() {
       console.log(response);
       for (var i = 0; i < response.data.length; i++) {
         var gifs = response.data[i].images.downsized.url;
+        $("#gifs").prepend("<img src='" + gifs + " '>");
       }
-      $("#gifs").append("<img src='" + gifs + " '>");
+      
             
     });
 };
@@ -184,16 +204,11 @@ $("#search").on("click", function(event) {
 //function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
   //if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
-/*function showTweets() {
+function showTweets() {
   var searchData = $(".search-term:selected").val();
   var tweetQueryURL = "https://api.twitter.com/1.1/search/tweets.json?q=" + searchData + "&result_type=recent"
-  
   $.ajax({
       url: tweetQueryURL,
-      Authorization: "OAuth oauth_consumer_key=&quot;DC0sePOBbQ8bYdC8r4Smg&quot;,oauth_signature_method=&quot;HMAC-SHA1&quot;,oauth_timestamp=&quot;1493341097&quot;,oauth_nonce=&quot;-250157939&quot;,oauth_version=&quot;1.0&quot;,oauth_token=&quot;38498108-U2qPfMMghPMOpuWPKrx0NDYt4mZ7FlC37h1RDpF1m&quot;,oauth_signature=&quot;w%2BChAZXCxncviJbp%2FEcLl6LVUFI%3D&quot;",
-      Host: "api.twitter.com",
-      XTargetURI: "https://api.twitter.com",
-      Connection: "Keep-Alive",
       method:"GET",
       dataType: "json",
     }).done(function(tweets) {
@@ -202,5 +217,5 @@ $("#search").on("click", function(event) {
         var gifs = response.data[i].images.downsized.url;
       }
       $("#gifs").append("<img src='" + gifs + " '>");*/
-    //});
-//};
+    });
+};

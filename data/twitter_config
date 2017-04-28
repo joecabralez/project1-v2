@@ -1,0 +1,7 @@
+{
+       "consumerKey": "D89cv7YlpazSytiRFUAYUy0Wm",
+       "consumerSecret": "qSwDqlQaQHiYqivKadNngKChUrRriELzyaTCHCTEEx2G5TRxYb",
+       "accessToken": "38498108-HnIXMVeSZC48KQBeJwF8oqv8uWwRFTQERBdZvAUNt",
+       "accessTokenSecret": "wA5YY1jjcb9yCaJvjAgG5EZToeP6Rr2hzljrYTPluJ3fS",
+       "callBackUrl": "https://second-screen-sports.firebaseapp.com/__/auth/handler"
+}
