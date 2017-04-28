@@ -31,6 +31,7 @@ console.log(todayDate);
 //////////////////////////////////
 //ajax to get sports api data/////
 //////////////////////////////////
+function sportsData(){
 var queryUrl = "https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=" + todayDate;
 $.ajax({
   method: "GET",
@@ -92,17 +93,18 @@ $.ajax({
   $("#home-team-name2").html(homeTeamName2);
   $("#home-team-score2").html(homeTeamScore2);
 
-  var timeout = setTimeout("location.reload(true);",60000);
-  function resetTimeout() {
-    clearTimeout(timeout);
-    timeout = setTimeout("location.reload(true);",60000);
-  }
+console.log("hello world");
 
 
 
 });
+};
 
+sportsData();
 
+var timeout = setTimeout(sportsData(),6000);
+
+clearTimeout(timeout);
 ////////////////////////////////////////////
 /////WIKIPEDIA FUNCTION WITH AJAX CALL//////
 ////////////////////////////////////////////
