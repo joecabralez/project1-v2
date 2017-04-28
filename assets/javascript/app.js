@@ -152,7 +152,7 @@ function wikipediaBox(search) {
 function displayGifs() {
     
     //the URL to search the site and grab 10 results
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchData + "&api_key=dc6zaTOxFJmzC&limit=5";
 
     //ajax function that gets a response from the site
     $.ajax({
@@ -162,7 +162,7 @@ function displayGifs() {
       console.log(response);
       for (var i = 0; i < response.data.length; i++) {
         var gifs = response.data[i].images.downsized.url;
-        $("#gifs").append("<img src='" + gifs + " '>");
+        $("#gifs").prepend("<img src='" + gifs + " '>");
       }
       
             
