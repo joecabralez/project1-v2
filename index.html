@@ -6,122 +6,120 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js">
   </script>
-  </script>
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
   <link href="assets/css/bulma.css" rel="stylesheet" type="text/css">
   <link href="assets/images/hooplaicon.png" rel="icon" type="image/png">
-  <script src="https://platform.twitter.com/widgets.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
+  </script>
+  <script src="https://platform.twitter.com/widgets.js">
+  </script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js">
   </script>
 </head>
 <body style="background-image: url(assets/images/background.png)">
   <!--nav bar-->
   <section class="hero is-dark" style="background-image: url(assets/images/background1.png)">
-     <div class="logo" align="center">
-        <div class="text" style="font-family: 'Pacifico', cursive"> 
-          <h1 style="font-size: 120px"; class="title text">Hoopla</h1>
-          <br>
-            <img src="assets/images/hooplaicon.png" height="130" width="130">
-         </div>
-      </div>
-     
-        <h1 class="subtitle" style="text-align: center;">Where hoops meets social</h1>
-      <div class="field has-addons has-addons-centered" style="padding-bottom: 25px;">
-        <p class="control"><span class="select"><select name="nba team">
-          <option class="search-term" value="Atlanta Hawks">
-            Atlanta Hawks
-          </option>
-          <option class="search-term" value="Boston Celtics">
-            Boston Celtics
-          </option>
-          <option class="search-term" value="Brooklyn Nets">
-            Brooklyn Nets
-          </option>
-          <option class="search-term" value="Charlotte Hornets">
-            Charlotte Hornets
-          </option>
-          <option class="search-term" value="Chicago Bulls">
-            Chicago Bulls
-          </option>
-          <option class="search-term" value="Cleveland Cavaliers">
-            Cleveland Cavaliers
-          </option>
-          <option class="search-term" value="Dallas Mavericks">
-            Dallas Mavericks
-          </option>
-          <option class="search-term" value="Denver Nuggets">
-            Denver Nuggets
-          </option>
-          <option class="search-term" value="Detroit Pistons">
-            Detroit Pistons
-          </option>
-          <option class="search-term" value="Golden State Warriors">
-            Golden State Warriors
-          </option>
-          <option class="search-term" value="Houston Rockets">
-            Houston Rockets
-          </option>
-          <option class="search-term" value="Indiana Pacers">
-            Indiana Pacers
-          </option>
-          <option class="search-term" value="Los Angeles Clippers">
-            Los Angeles Clippers
-          </option>
-          <option class="search-term" value="Los Angeles Lakers">
-            Los Angeles Lakers
-          </option>
-          <option class="search-term" value="Memphis Grizzlies">
-            Memphis Grizzlies
-          </option>
-          <option class="search-term" value="Miami Heat">
-            Miami Heat
-          </option>
-          <option class="search-term" value="Milwaukee Bucks">
-            Milwaukee Bucks
-          </option>
-          <option class="search-term" value="Minnesota Timberwolves">
-            Minnesota Timberwolves
-          </option>
-          <option class="search-term" value="New Orleans Pelicans">
-            New Orleans Pelicans
-          </option>
-          <option class="search-term" value="New York Knicks">
-            New York Knicks
-          </option>
-          <option class="search-term" value="Oklahoma City Thunder">
-            Oklahoma City Thunder
-          </option>
-          <option class="search-term" value="Orlando Magic">
-            Orlando Magic
-          </option>
-          <option class="search-term" value="Philadelphia 76ers">
-            Philadelphia 76ers
-          </option>
-          <option class="search-term" value="Phoenix Suns">
-            Phoenix Suns
-          </option>
-          <option class="search-term" value="Portland Trail Blazers">
-            Portland Trail Blazers
-          </option>
-          <option class="search-term" value="Sacramento Kings">
-            Sacramento Kings
-          </option>
-          <option class="search-term" value="San Antonio Spurs">
-            San Antonio Spurs
-          </option>
-          <option class="search-term" value="Toronto Raptors">
-            Toronto Raptors
-          </option>
-          <option class="search-term" value="Utah Jazz">
-            Utah Jazz
-          </option>
-          <option class="search-term" value="Washington Wizards">
-            Washington Wizards
-          </option>
-        </select></span></p>
-        <p class="control"><button class="button is-primary" id="search" type="submit">Choose</button></p>
-      </div>
+    <div align="center" class="logo">
+      <div class="text" style="font-family: 'Pacifico', cursive">
+      <h1 class="title text" style="font-size: 120px">Hoopla</h1><br>
+      <img height="130" src="assets/images/hooplaicon.png" width="130"></div>
+    </div>
+    <h1 class="subtitle" style="text-align: center;">Where hoops meets social</h1>
+    <div class="field has-addons has-addons-centered" style="padding-bottom: 25px;">
+      <p class="control"><span class="select"><select name="nba team">
+        <option class="search-term" value="Atlanta Hawks">
+          Atlanta Hawks
+        </option>
+        <option class="search-term" value="Boston Celtics">
+          Boston Celtics
+        </option>
+        <option class="search-term" value="Brooklyn Nets">
+          Brooklyn Nets
+        </option>
+        <option class="search-term" value="Charlotte Hornets">
+          Charlotte Hornets
+        </option>
+        <option class="search-term" value="Chicago Bulls">
+          Chicago Bulls
+        </option>
+        <option class="search-term" value="Cleveland Cavaliers">
+          Cleveland Cavaliers
+        </option>
+        <option class="search-term" value="Dallas Mavericks">
+          Dallas Mavericks
+        </option>
+        <option class="search-term" value="Denver Nuggets">
+          Denver Nuggets
+        </option>
+        <option class="search-term" value="Detroit Pistons">
+          Detroit Pistons
+        </option>
+        <option class="search-term" value="Golden State Warriors">
+          Golden State Warriors
+        </option>
+        <option class="search-term" value="Houston Rockets">
+          Houston Rockets
+        </option>
+        <option class="search-term" value="Indiana Pacers">
+          Indiana Pacers
+        </option>
+        <option class="search-term" value="Los Angeles Clippers">
+          Los Angeles Clippers
+        </option>
+        <option class="search-term" value="Los Angeles Lakers">
+          Los Angeles Lakers
+        </option>
+        <option class="search-term" value="Memphis Grizzlies">
+          Memphis Grizzlies
+        </option>
+        <option class="search-term" value="Miami Heat">
+          Miami Heat
+        </option>
+        <option class="search-term" value="Milwaukee Bucks">
+          Milwaukee Bucks
+        </option>
+        <option class="search-term" value="Minnesota Timberwolves">
+          Minnesota Timberwolves
+        </option>
+        <option class="search-term" value="New Orleans Pelicans">
+          New Orleans Pelicans
+        </option>
+        <option class="search-term" value="New York Knicks">
+          New York Knicks
+        </option>
+        <option class="search-term" value="Oklahoma City Thunder">
+          Oklahoma City Thunder
+        </option>
+        <option class="search-term" value="Orlando Magic">
+          Orlando Magic
+        </option>
+        <option class="search-term" value="Philadelphia 76ers">
+          Philadelphia 76ers
+        </option>
+        <option class="search-term" value="Phoenix Suns">
+          Phoenix Suns
+        </option>
+        <option class="search-term" value="Portland Trail Blazers">
+          Portland Trail Blazers
+        </option>
+        <option class="search-term" value="Sacramento Kings">
+          Sacramento Kings
+        </option>
+        <option class="search-term" value="San Antonio Spurs">
+          San Antonio Spurs
+        </option>
+        <option class="search-term" value="Toronto Raptors">
+          Toronto Raptors
+        </option>
+        <option class="search-term" value="Utah Jazz">
+          Utah Jazz
+        </option>
+        <option class="search-term" value="Washington Wizards">
+          Washington Wizards
+        </option>
+      </select></span></p>
+      <p class="control"><button class="button is-primary" id="search" type="submit">Choose</button></p>
     </div>
   </section><br>
   <div class="tile is-ancestor" style="max-width: 960px; margin: 0 auto;">
@@ -185,14 +183,12 @@
             <div class="tile is-parent" style="margin: 0 auto; text-align: center">
               <article class="tile is-child box" style="background-color: rgba(245, 245, 245, 0.4)">
                 <p class="title" style="text-align: center">BASKETBALL #HOOPLA</p>
-                <p class="subtitle" style="text-align: center;">Join the conversation</p>
-                <a class="twitter-share-button"
-  href="https://twitter.com/intent/tweet?text=Talking+%23NBAPlayoffs+on+%23Hoopla%21+Join+the+convo%3A+hooplasportsapp.io"
-  data-size="large">
-Tweet</a>
+                <p class="subtitle" style="text-align: center;">Join the conversation</p><a class="twitter-share-button" data-size="large" href="https://twitter.com/intent/tweet?text=Talking+%23NBAPlayoffs+on+%23Hoopla%21+Join+the+convo%3A+www.hooplasportsapp.io">Tweet</a>
                 <div class="sports-tweets" id="twitter" style="margin: 0 auto; text-align: center">
-                            <a class="twitter-timeline"  href="https://twitter.com/hashtag/NBAPlayoffs" data-widget-id="858032368510283776">#NBAPlayoffs Tweets</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                  <a class="twitter-timeline" data-widget-id="858032368510283776" href="https://twitter.com/hashtag/NBAPlayoffs">#NBAPlayoffs Tweets</a> 
+                  <script>
+                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                  </script>
                 </div>
               </article>
             </div><!-- WIKIPEDIA -->
@@ -210,12 +206,12 @@ Tweet</a>
                 <div class="content">
                   <p class="title" style="text-align: center;">MVG</p>
                   <p class="subtitle" style="text-align: center;">Most Valuable GIFs</p>
-                  <div class="content" id="gifs">
-                  </div>
+                  <div class="content" id="gifs"></div>
                 </div>
               </article>
             </div>
-            <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js">
+            </script> 
             <script src="assets/javascript/app.js">
             </script>
           </article>
