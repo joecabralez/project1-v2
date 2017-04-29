@@ -27,7 +27,9 @@ $("#search").on("click", function() {
 //vars for queryUrl parameters
 
 var todayDate = moment().format("YYYY" + "MM" + "DD");
+var previousDate= moment().add(-1, 'days').format("YYYY" + "MM" + "DD");
 console.log(todayDate);
+console.log(previousDate);
 //////////////////////////////////
 //ajax to get sports api data/////
 //////////////////////////////////
@@ -41,9 +43,9 @@ $.ajax({
     "Authorization": "Basic " + btoa("joecabralez" + ":" + "twattwat!3")
   },
 }).done(function(SportsData) {
-  console.log("------------------------");
-  console.log(SportsData);
-  console.log(SportsData.scoreboard);
+  if(!SportsData){
+    queryUrl = "https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=" + previousDate;
+  }
 
   var awayTeamCity1 = SportsData.scoreboard.gameScore[0].game.awayTeam.City
   var awayTeamName1 = SportsData.scoreboard.gameScore[0].game.awayTeam.Name
@@ -78,6 +80,8 @@ $.ajax({
   if(!awayTeamScore2){
     awayTeamScore2 = 0;
   }
+
+
 
   $("#away-team-city1").html(awayTeamCity1);
   $("#away-team-name1").html(awayTeamName1);
